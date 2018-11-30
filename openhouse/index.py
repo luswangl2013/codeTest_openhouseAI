@@ -24,10 +24,10 @@ def result():
     if request.method == 'POST':
         string = request.form
         string = string['string']# get the query string
-        text = kingi
+        corpus = kingi
         result_dict = {}
         result_dict["query_text"] = string
-        result_dict["number_of_occurrences"] = text.count(string)
+        result_dict["number_of_occurrences"] = corpus.count(string)
         if result_dict["number_of_occurrences"] == 0:# search result == 0
             js = json.dumps(result_dict, indent=4, separators=(',\n', ': '))
             with open('application/json.json', 'w') as outfile:
