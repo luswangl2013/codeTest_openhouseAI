@@ -5,6 +5,7 @@ Created on Thu Nov 29 22:46:42 2018
 @author: lin
 
 python version 2.7.14
+flask version 0.12.2
 """
 
 from flask import Flask, render_template, request
