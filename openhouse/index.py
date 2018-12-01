@@ -73,13 +73,18 @@ def result():
                     '''
                     pos = index + len(text[i-1]) + 1
                     begin = pos - 1
-                    end = pos + len(string) + 1
-                    while origin[begin] not in ".?!":
+                    ori = corpus.find(text[i-1])
+                    
+                    while begin > 0 and origin[begin] not in ".?!":
                         begin -= 1
-                    while origin[end] not in ".?!":
+                        
+                    end = ori + begin + len(string)
+                    while end < len(corpus) - 1 and corpus[end] not in ".?!":
                         end += 1
-                    occurrence["in_sentence"] = origin[begin+2:end+1]
-
+                    if begin != 0: begin += 1
+                    s = corpus[begin + ori:end+1]
+                    occurrence["in_sentence"] = s.replace("\n", " ")
+                    
                 occurrences.append(occurrence)
         result_dict["occurrences"] = occurrences
         js = json.dumps(result_dict, indent=4, separators=(',\n', ': '))
